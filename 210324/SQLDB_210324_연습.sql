@@ -1,18 +1,18 @@
 
 /*
-    ¿¬½À ¹®Á¦
+    ì—°ìŠµ ë¬¸ì œ
     
-    1. °í°´ Å×ÀÌºí (customer) »ý¼º 
-    2. ÁÖ¹® Å×ÀÌºí (orderProduct) »ý¼º (ÀÌ¹Ì »ý¼ºµÈ »óÇ°(product) Å×ÀÌºí¿¡ ´ëÇÑ ÁÖ¹®)
-    3. °í°´ Å×ÀÌºíÀÇ ÀüÈ­¹øÈ£ ¿­À» NOT NULL·Î º¯°æ
-    4. °í°´ Å×ÀÌºí¿¡ ¡®¼ºº°¡¯, ¡®³ªÀÌ¡¯ ¿­ Ãß°¡
-    5. °í°´, ÁÖ¹® Å×ÀÌºí¿¡ µ¥ÀÌÅÍ »ðÀÔ (3°³¾¿)
-    6. ÁÖ¹® Å×ÀÌºí¿¡¼­ »óÇ°¹øÈ£°¡ 2ÀÎ ÇàÀÇ ÁÖ¹®¼ö·®À» 3À¸·Î ¼öÁ¤
+    1. ê³ ê° í…Œì´ë¸” (customer) ìƒì„± 
+    2. ì£¼ë¬¸ í…Œì´ë¸” (orderProduct) ìƒì„± (ì´ë¯¸ ìƒì„±ëœ ìƒí’ˆ(product) í…Œì´ë¸”ì— ëŒ€í•œ ì£¼ë¬¸)
+    3. ê³ ê° í…Œì´ë¸”ì˜ ì „í™”ë²ˆí˜¸ ì—´ì„ NOT NULLë¡œ ë³€ê²½
+    4. ê³ ê° í…Œì´ë¸”ì— â€˜ì„±ë³„â€™, â€˜ë‚˜ì´â€™ ì—´ ì¶”ê°€
+    5. ê³ ê°, ì£¼ë¬¸ í…Œì´ë¸”ì— ë°ì´í„° ì‚½ìž… (3ê°œì”©)
+    6. ì£¼ë¬¸ í…Œì´ë¸”ì—ì„œ ìƒí’ˆë²ˆí˜¸ê°€ 2ì¸ í–‰ì˜ ì£¼ë¬¸ìˆ˜ëŸ‰ì„ 3ìœ¼ë¡œ ìˆ˜ì •
 */
 
     SELECT * FROM PRODUCT;
 
-    -- 1. °í°´ Å×ÀÌºí (customer) »ý¼º 
+    -- 1. ê³ ê° í…Œì´ë¸” (customer) ìƒì„± 
         CREATE TABLE customer (
             custNo VARCHAR2(10) NOT NULL PRIMARY KEY,
             custName VARCHAR2(30),
@@ -21,8 +21,8 @@
         );
         
         
-    -- 2. ÁÖ¹® Å×ÀÌºí (orderProduct) »ý¼º (ÀÌ¹Ì »ý¼ºµÈ »óÇ°(product) Å×ÀÌºí¿¡ ´ëÇÑ ÁÖ¹®)
-    -- ÁÖ¹®¹øÈ£, ÁÖ¹®ÀÏ, ÁÖ¹®¼ö·®, °í°´¹øÈ£, »óÇ°¹øÈ£
+    -- 2. ì£¼ë¬¸ í…Œì´ë¸” (orderProduct) ìƒì„± (ì´ë¯¸ ìƒì„±ëœ ìƒí’ˆ(product) í…Œì´ë¸”ì— ëŒ€í•œ ì£¼ë¬¸)
+    -- ì£¼ë¬¸ë²ˆí˜¸, ì£¼ë¬¸ì¼, ì£¼ë¬¸ìˆ˜ëŸ‰, ê³ ê°ë²ˆí˜¸, ìƒí’ˆë²ˆí˜¸
         CREATE TABLE orderProduct (
             ordNo VARCHAR2(10) NOT NULL PRIMARY KEY,
             ordDate DATE,
@@ -34,18 +34,18 @@
         );
         
         
-    -- 3. °í°´ Å×ÀÌºíÀÇ ÀüÈ­¹øÈ£ ¿­À» NOT NULL·Î º¯°æ
+    -- 3. ê³ ê° í…Œì´ë¸”ì˜ ì „í™”ë²ˆí˜¸ ì—´ì„ NOT NULLë¡œ ë³€ê²½
           ALTER TABLE customer MODIFY custPhone VARCHAR2(13) NOT NULL;
     
     
-    -- 4. °í°´ Å×ÀÌºí¿¡ ¡®¼ºº°¡¯, ¡®³ªÀÌ¡¯ ¿­ Ãß°¡
+    -- 4. ê³ ê° í…Œì´ë¸”ì— â€˜ì„±ë³„â€™, â€˜ë‚˜ì´â€™ ì—´ ì¶”ê°€
          ALTER TABLE customer ADD (custGender VARCHAR(3), custAge NUMBER(3));
     
     
-    -- 5. °í°´, ÁÖ¹® Å×ÀÌºí¿¡ µ¥ÀÌÅÍ »ðÀÔ (3°³¾¿)
-        INSERT INTO customer VALUES ('1001', 'È«±æµ¿', '010-1111-1111', '°æ±â', '³²', 20);
-        INSERT INTO customer VALUES ('1002', 'ÀÌ¸ù·æ', '010-2222-2222', '¼­¿ï', '³²', 30);
-        INSERT INTO customer VALUES ('1003', '¼ºÃáÇâ', '010-3333-3333', '¼­¿ï', '¿©', 25);
+    -- 5. ê³ ê°, ì£¼ë¬¸ í…Œì´ë¸”ì— ë°ì´í„° ì‚½ìž… (3ê°œì”©)
+        INSERT INTO customer VALUES ('1001', 'í™ê¸¸ë™', '010-1111-1111', 'ê²½ê¸°', 'ë‚¨', 20);
+        INSERT INTO customer VALUES ('1002', 'ì´ëª½ë£¡', '010-2222-2222', 'ì„œìš¸', 'ë‚¨', 30);
+        INSERT INTO customer VALUES ('1003', 'ì„±ì¶˜í–¥', '010-3333-3333', 'ì„œìš¸', 'ì—¬', 25);
         
         SELECT * FROM CUSTOMER;
         SELECT * FROM PRODUCT;
@@ -57,5 +57,5 @@
         INSERT INTO orderProduct VALUES ('4', '2021-03-01', 1, '1001', '2');
     
     
-    -- 6. ÁÖ¹® Å×ÀÌºí¿¡¼­ »óÇ°¹øÈ£°¡ 2ÀÎ ÇàÀÇ ÁÖ¹®¼ö·®À» 3À¸·Î ¼öÁ¤
+    -- 6. ì£¼ë¬¸ í…Œì´ë¸”ì—ì„œ ìƒí’ˆë²ˆí˜¸ê°€ 2ì¸ í–‰ì˜ ì£¼ë¬¸ìˆ˜ëŸ‰ì„ 3ìœ¼ë¡œ ìˆ˜ì •
         UPDATE orderProduct SET ordQty =3 WHERE prdNo = '2';
