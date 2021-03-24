@@ -1,12 +1,58 @@
         /*
             book, publisher, client, bookSale
-            ìƒˆ ì‚¬ìš©ìž ìƒì„± : KDYUSER2
-            ìƒˆ ì ‘ì† ìƒì„± : SQLDB2
+            »õ »ç¿ëÀÚ »ý¼º : KDYUSER2
+            »õ Á¢¼Ó »ý¼º : SQLDB2
             
-            4ê°œì˜ í…ìŠ¤íŠ¸ íŒŒì¼ IMPORT í•´ì„œ í…Œì´ë¸” ìƒì„±
-            * ì£¼ì˜!! ìˆœì„œ ì£¼ì˜ ( ì™¸ëž˜í‚¤ ì œì•½ ì¡°ê±´ ì„¤ì •)
+            4°³ÀÇ ÅØ½ºÆ® ÆÄÀÏ IMPORT ÇØ¼­ Å×ÀÌºí »ý¼º
+            * ÁÖÀÇ!! ¼ø¼­ ÁÖÀÇ ( ¿Ü·¡Å° Á¦¾à Á¶°Ç ¼³Á¤)
             
-            ë°ì´í„° íƒ€ìž…
-                - ìˆ«ìž : bookPrice, bookStock, bsQty
-                - ë‚ ì§œ : bsDate,clientBirth, bookDate
+            µ¥ÀÌÅÍ Å¸ÀÔ
+                - ¼ýÀÚ : bookPrice, bookStock, bsQty
+                - ³¯Â¥ : bsDate,clientBirth, bookDate
       */
+        
+        
+        
+        
+    
+    -- ±âº»Å° ¼³Á¤
+    ALTER TABLE book
+        ADD CONSTRAINT PK_book_bookNo PRIMARY KEY (bookNo);
+        
+    ALTER TABLE bookSale
+        ADD CONSTRAINT PK_bookSale_bsNo PRIMARY KEY (bsNo);
+        
+    ALTER TABLE client
+        ADD CONSTRAINT PK_client_clientNo PRIMARY KEY (clientNo);
+        
+    ALTER TABLE publisher
+        ADD CONSTRAINT PK_publisher_pubNo PRIMARY KEY (pubNo);
+        
+        
+        
+    -- µ¥ÀÌÅÍ Å¸ÀÔ ¼öÁ¤
+    -- book
+    ALTER TABLE book MODIFY bookStock NUMBER(10);
+    ALTER TABLE book MODIFY bookPrice NUMBER(10);
+    ALTER TABLE book MODIFY bookDate DATE;
+    
+    -- bookSale
+    ALTER TABLE bookSale MODIFY bsQty NUMBER(10);
+    ALTER TABLE bookSale MODIFY bsDate DATE;
+        
+    -- client
+    ALTER TABLE client MODIFY clientBirth DATE;
+    
+    
+    
+    -- ¿Ü·¡Å° Á¦¾à Á¶°Ç ¼³Á¤
+    -- book
+    ALTER TABLE book
+        ADD CONSTRAINT FK_book_publisher FOREIGN KEY (pubNo) REFERENCES publisher (pubNo);    
+    
+    -- bookSale
+    ALTER TABLE bookSale
+        ADD CONSTRAINT FK_bookSale_book FOREIGN KEY (bookNo) REFERENCES book (bookNo);
+
+    ALTER TABLE bookSale
+        ADD CONSTRAINT FK_bookSale_client FOREIGN KEY (clientNo) REFERENCES client (clientNo);
