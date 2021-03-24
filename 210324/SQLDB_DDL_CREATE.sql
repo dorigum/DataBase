@@ -1,7 +1,7 @@
 
-    -- »óÇ° Å×ÀÌºí »ý¼º
-    -- Á¦¾àÁ¶°Ç
-        -- ±âº»Å° : prdNo, NOT NULL
+    -- ìƒí’ˆ í…Œì´ë¸” ìƒì„±
+    -- ì œì•½ì¡°ê±´
+        -- ê¸°ë³¸í‚¤ : prdNo, NOT NULL
         -- prdName : NOT NULL
         
         CREATE TABLE product (
@@ -23,9 +23,9 @@
         
         
         /*
-            ÃâÆÇ»ç Å×ÀÌºí »ý¼º (ÃâÆÇ»ç¹øÈ£, ÃâÆÇ»ç¸í) pubNo, pubName
-            Á¦¾àÁ¶°Ç
-                - ±âº»Å°·Î pubNo ÁöÁ¤, NOT NULL
+            ì¶œíŒì‚¬ í…Œì´ë¸” ìƒì„± (ì¶œíŒì‚¬ë²ˆí˜¸, ì¶œíŒì‚¬ëª…) pubNo, pubName
+            ì œì•½ì¡°ê±´
+                - ê¸°ë³¸í‚¤ë¡œ pubNo ì§€ì •, NOT NULL
                 - pubName : NOT NULL
         */
         
@@ -37,12 +37,12 @@
             
             
             /*
-               µµ¼­ Å×ÀÌºí »ý¼º (µµ¼­¹øÈ£, µµ¼­¸í, °¡°Ý, ¹ßÇàÀÏ, ÃâÆÇ»ç¹øÈ£)
-              Á¦¾àÁ¶°Ç
-                    - ±âº»Å° ¼³Á¤ : bookNo, NOT NULL
-                   - ¿Ü·¡Å° ¼³Á¤ : pubNo (ÂüÁ¶ Å×ÀÌºí°ú ±âº»Å° ÁöÁ¤)
-                - ÃâÆÇ»ç Å×ÀÌºí (Publisher) ÂüÁ¶
-                  - bookPrice¸¦ ±âº»°ªÀ¸·Î 10000 ¼³Á¤, 1000º¸´Ù Å©°Ô ¼³Á¤
+               ë„ì„œ í…Œì´ë¸” ìƒì„± (ë„ì„œë²ˆí˜¸, ë„ì„œëª…, ê°€ê²©, ë°œí–‰ì¼, ì¶œíŒì‚¬ë²ˆí˜¸)
+              ì œì•½ì¡°ê±´
+                    - ê¸°ë³¸í‚¤ ì„¤ì • : bookNo, NOT NULL
+                   - ì™¸ëž˜í‚¤ ì„¤ì • : pubNo (ì°¸ì¡° í…Œì´ë¸”ê³¼ ê¸°ë³¸í‚¤ ì§€ì •)
+                - ì¶œíŒì‚¬ í…Œì´ë¸” (Publisher) ì°¸ì¡°
+                  - bookPriceë¥¼ ê¸°ë³¸ê°’ìœ¼ë¡œ 10000 ì„¤ì •, 1000ë³´ë‹¤ í¬ê²Œ ì„¤ì •
             */
             
             create table book (
@@ -56,45 +56,45 @@
             
             /*
             constraint FK_book_publisher foreign key (pubNo) REFERENCES publisher (pubNo)
-            constraint FK_book_publisher foreign key (book Å×ÀÌºíÀÇ pubNo ¿­(¿Ü·¡Å°)
-            REFERENCES ÂüÁ¶ÇÏ´Â Å×ÀÌºí(ÃâÆÇ»ç Å×ÀÌºí)(ÃâÆÇ»ç Å×ÀÌºíÀÇ ±âº»Å°)
+            constraint FK_book_publisher foreign key (book í…Œì´ë¸”ì˜ pubNo ì—´(ì™¸ëž˜í‚¤)
+            REFERENCES ì°¸ì¡°í•˜ëŠ” í…Œì´ë¸”(ì¶œíŒì‚¬ í…Œì´ë¸”)(ì¶œíŒì‚¬ í…Œì´ë¸”ì˜ ê¸°ë³¸í‚¤)
             */
             
             
             
             
             /*
-                Å×ÀÌºí »ý¼º ¼ø¼­ : (1) publisher (2) book
-                Å×ÀÌºí ÀÔ·Â ¼ø¼­ : (1) publisher (2) book
-                ÀÌ ¼ø¼­´ë·Î »ý¼ºÇÏÁö ¾Ê°Å³ª µ¥ÀÌÅÍ¸¦ ÀÔ·ÂÇÏÁö ¾ÊÀ¸¸é
-                -- [ÂüÁ¶ ¹«°á¼º Á¦¾àÁ¶°Ç] ¿¡ À§¹èÇØ¼­ ¿À·ù°¡ ¹ß»ý
+                í…Œì´ë¸” ìƒì„± ìˆœì„œ : (1) publisher (2) book
+                í…Œì´ë¸” ìž…ë ¥ ìˆœì„œ : (1) publisher (2) book
+                ì´ ìˆœì„œëŒ€ë¡œ ìƒì„±í•˜ì§€ ì•Šê±°ë‚˜ ë°ì´í„°ë¥¼ ìž…ë ¥í•˜ì§€ ì•Šìœ¼ë©´
+                -- [ì°¸ì¡° ë¬´ê²°ì„± ì œì•½ì¡°ê±´] ì— ìœ„ë°°í•´ì„œ ì˜¤ë¥˜ê°€ ë°œìƒ
             */
             
             
             
             /*
-                1. ¼­¿ï ÃâÆÇ»ç
-                2. µµ¼­ÃâÆÇ °­³²
-                3. Á¤º¸ ÃâÆÇ»ç
+                1. ì„œìš¸ ì¶œíŒì‚¬
+                2. ë„ì„œì¶œíŒ ê°•ë‚¨
+                3. ì •ë³´ ì¶œíŒì‚¬
             */
             
             
             /*
-                Å×ÀÌºí »ý¼º
-                    - ÇÐ»ý (student) (ÇÐ¹ø, ÀÌ¸§, ÇÐ°ú, ÇÐ³â)
-                    - ÇÐ°ú (department) (ÇÐ°ú¹øÈ£, ÇÐ°úÀÌ¸§)
+                í…Œì´ë¸” ìƒì„±
+                    - í•™ìƒ (student) (í•™ë²ˆ, ì´ë¦„, í•™ê³¼, í•™ë…„)
+                    - í•™ê³¼ (department) (í•™ê³¼ë²ˆí˜¸, í•™ê³¼ì´ë¦„)
                     
-                µ¥ÀÌÅÍ ÀÔ·Â ( ÂüÁ¶ ¹«°á¼º Á¦¾à Á¶°Ç¿¡ À§¹èµÇÁö ¾Ê°Ô µ¥ÀÌÅÍ¸¦ ÀÔ·ÂÇÒ ¼ö ÀÖ´ÂÁö º¸±â À§ÇØ¼­)
-                    - °¢ Å×ÀÌºí 2°³ Á¤µµ ÀÔ·Â
+                ë°ì´í„° ìž…ë ¥ ( ì°¸ì¡° ë¬´ê²°ì„± ì œì•½ ì¡°ê±´ì— ìœ„ë°°ë˜ì§€ ì•Šê²Œ ë°ì´í„°ë¥¼ ìž…ë ¥í•  ìˆ˜ ìžˆëŠ”ì§€ ë³´ê¸° ìœ„í•´ì„œ)
+                    - ê° í…Œì´ë¸” 2ê°œ ì •ë„ ìž…ë ¥
                     
-                Á¦¾àÁ¶°Ç
-                - ±âº»Å° ¼³Á¤
-                - ÇÐ»ýÀº ÇÐ°ú¿¡ ¼Ò¼Ó
-                -ÇÐ»ý ÀÌ¸§°ú ÇÐ°ú ÀÌ¸§Àº NULL Çã¿ëÇÏÁö ¾ÊÀ½
-                - ÇÐ³âÀº 4¸¦ ±âº»°ªÀ¸·Î, ¹üÀ§¸¦ 1~4·Î ¼³Á¤
+                ì œì•½ì¡°ê±´
+                - ê¸°ë³¸í‚¤ ì„¤ì •
+                - í•™ìƒì€ í•™ê³¼ì— ì†Œì†
+                -í•™ìƒ ì´ë¦„ê³¼ í•™ê³¼ ì´ë¦„ì€ NULL í—ˆìš©í•˜ì§€ ì•ŠìŒ
+                - í•™ë…„ì€ 4ë¥¼ ê¸°ë³¸ê°’ìœ¼ë¡œ, ë²”ìœ„ë¥¼ 1~4ë¡œ ì„¤ì •
             */
             
-            -- ÇÐ»ý Å×ÀÌºí »ý¼º
+            -- í•™ìƒ í…Œì´ë¸” ìƒì„±
             CREATE TABLE STUDENT (
                 stuNo VARCHAR2(20) NOT NULL PRIMARY KEY,
                 stuName VARCHAR2(20) NOT NULL,
@@ -104,7 +104,7 @@
             );
             
             
-            -- ÇÐ°ú Å×ÀÌºí »ý¼º
+            -- í•™ê³¼ í…Œì´ë¸” ìƒì„±
             CREATE TABLE DEPARTMENT (
                 depNo VARCHAR2(20) NOT NULL PRIMARY KEY,
                 depName VARCHAR2(30) NOT NULL
@@ -114,12 +114,12 @@
             
             
             /*
-                ±³¼ö Å×ÀÌºí »ý¼º
-                    - ±³¼ö´Â ÇÐ°ú¿¡ ¼Ò¼ÓµÇ¾î ÀÖ´Ù.
+                êµìˆ˜ í…Œì´ë¸” ìƒì„±
+                    - êµìˆ˜ëŠ” í•™ê³¼ì— ì†Œì†ë˜ì–´ ìžˆë‹¤.
                 
-                °ú¸ñ Å×ÀÌºí »ý¼º
-                    - ±³¼ö´Â °ú¸ñÀ» °­ÀÇÇÑ´Ù.
-                    - °­ÀÇ ÇÐÁ¡µµ ±âÀç
+                ê³¼ëª© í…Œì´ë¸” ìƒì„±
+                    - êµìˆ˜ëŠ” ê³¼ëª©ì„ ê°•ì˜í•œë‹¤.
+                    - ê°•ì˜ í•™ì ë„ ê¸°ìž¬
             */
             
             create table education (
@@ -142,12 +142,12 @@
             
             
             /*
-                ÇÐ°ú (ÇÐ°úÄÚµå, ÇÐ°ú¸í, ÀüÈ­¹øÈ£)
-                ÇÐ»ý (ÇÐ¹ø, ¼º¸í, ÇÐ³â, ÁÖ¼Ò, »ý³â¿ùÀÏ, ÇÐ°úÄÚµå)
-                ±³¼ö (±³¼ö¹øÈ£, ±³¼ö¸í, Á÷À§, ÀüÈ­¹øÈ£, ÇÐ°úÄÚµå)
-                °ú¸ñ (°ú¸ñÄÚµå, °ú¸ñ¸í, ÇÐÁ¡, ±³¼ö¹øÈ£)
-                ¼ºÀû (ÇÐ¹ø, °ú¸ñÄÚµå, ¼ºÀû, µî±Þ) / (ÇÐ¹ø, °ú¸ñÄÚµå) 2°³¸¦ ±âº»Å°·Î ¼³Á¤ (º¹ÇÕÅ°)
-                  : ÇÐ»ýÀÌ °ú¸ñÀ» ¼±ÅÃÇØ¼­ ¼ºÀû°ú µî±ÞÀ» ¹ÞÀ½
+                í•™ê³¼ (í•™ê³¼ì½”ë“œ, í•™ê³¼ëª…, ì „í™”ë²ˆí˜¸)
+                í•™ìƒ (í•™ë²ˆ, ì„±ëª…, í•™ë…„, ì£¼ì†Œ, ìƒë…„ì›”ì¼, í•™ê³¼ì½”ë“œ)
+                êµìˆ˜ (êµìˆ˜ë²ˆí˜¸, êµìˆ˜ëª…, ì§ìœ„, ì „í™”ë²ˆí˜¸, í•™ê³¼ì½”ë“œ)
+                ê³¼ëª© (ê³¼ëª©ì½”ë“œ, ê³¼ëª©ëª…, í•™ì , êµìˆ˜ë²ˆí˜¸)
+                ì„±ì  (í•™ë²ˆ, ê³¼ëª©ì½”ë“œ, ì„±ì , ë“±ê¸‰) / (í•™ë²ˆ, ê³¼ëª©ì½”ë“œ) 2ê°œë¥¼ ê¸°ë³¸í‚¤ë¡œ ì„¤ì • (ë³µí•©í‚¤)
+                  : í•™ìƒì´ ê³¼ëª©ì„ ì„ íƒí•´ì„œ ì„±ì ê³¼ ë“±ê¸‰ì„ ë°›ìŒ
             */
             
             
