@@ -1,47 +1,47 @@
 
-    -- ∞Ì∞¥ »£≥ØµŒ¿« ¡÷πÆºˆ∑Æ ¡∂»∏
-    -- 1. client ≈◊¿Ã∫Ìø°º≠ '»£≥ØµŒ' ¿« clientNo∏¶ √£æ∆º≠
-    -- 2. bookSale ≈◊¿Ã∫Ìø°º≠ ¿Ã clientNoø° «ÿ¥Áµ«¥¬ µµº≠ø° ¥Î«ÿ
-    -- 3. ¡÷πÆ¿œ, ¡÷πÆºˆ∑Æ √‚∑¬
+    -- Í≥†Í∞ù Ìò∏ÎÇ†ÎëêÏùò Ï£ºÎ¨∏ÏàòÎüâ Ï°∞Ìöå
+    -- 1. client ÌÖåÏù¥Î∏îÏóêÏÑú 'Ìò∏ÎÇ†Îëê' Ïùò clientNoÎ•º Ï∞æÏïÑÏÑú
+    -- 2. bookSale ÌÖåÏù¥Î∏îÏóêÏÑú Ïù¥ clientNoÏóê Ìï¥ÎãπÎêòÎäî ÎèÑÏÑúÏóê ÎåÄÌï¥
+    -- 3. Ï£ºÎ¨∏Ïùº, Ï£ºÎ¨∏ÏàòÎüâ Ï∂úÎ†•
     
     SELECT bsDate, bsQty
     FROM bookSale
     WHERE clientNo = ( SELECT clientNo
                                     FROM client
-                                    WHERE clientName = '»£≥ØµŒ');
+                                    WHERE clientName = 'Ìò∏ÎÇ†Îëê');
                                     
                                     
-    -- ∞Ì∞¥ »£≥ØµŒ∞° ¡÷πÆ«— √— ¡÷πÆ ºˆ∑Æ √‚∑¬
-    SELECT SUM(bsQty) AS "√— ¡÷πÆ ºˆ∑Æ"
+    -- Í≥†Í∞ù Ìò∏ÎÇ†ÎëêÍ∞Ä Ï£ºÎ¨∏Ìïú Ï¥ù Ï£ºÎ¨∏ ÏàòÎüâ Ï∂úÎ†•
+    SELECT SUM(bsQty) AS "Ï¥ù Ï£ºÎ¨∏ ÏàòÎüâ"
     FROM bookSale
     WHERE clientNo = ( SELECT clientNo
                                     FROM client
-                                    WHERE clientName = '»£≥ØµŒ');
+                                    WHERE clientName = 'Ìò∏ÎÇ†Îëê');
                                     
                                     
-    -- ∞°¿Â ∫ÒΩ— µµº≠¿« µµº≠∏Ì∞˙ ∞°∞› √‚∑¬
+    -- Í∞ÄÏû• ÎπÑÏãº ÎèÑÏÑúÏùò ÎèÑÏÑúÎ™ÖÍ≥º Í∞ÄÍ≤© Ï∂úÎ†•
     SELECT bookName, bookPrice
     FROM book
     WHERE bookPrice = ( SELECT MAX(bookPrice)
                                         FROM book);
                                         
                                         
-    -- µµº≠¿« ∆Ú±’ ∞°∞›∫∏¥Ÿ ∫ÒΩ— µµº≠¿« µµº≠∏Ì, ∞°∞› √‚∑¬
-    -- ¬¸∞Ì : ∆Ú±’ µµº≠ ∞°∞›
-    SELECT AVG(bookPrice) AS "∆Ú±’ µµº≠ ∞°∞›"
+    -- ÎèÑÏÑúÏùò ÌèâÍ∑† Í∞ÄÍ≤©Î≥¥Îã§ ÎπÑÏãº ÎèÑÏÑúÏùò ÎèÑÏÑúÎ™Ö, Í∞ÄÍ≤© Ï∂úÎ†•
+    -- Ï∞∏Í≥† : ÌèâÍ∑† ÎèÑÏÑú Í∞ÄÍ≤©
+    SELECT AVG(bookPrice) AS "ÌèâÍ∑† ÎèÑÏÑú Í∞ÄÍ≤©"
     FROM book;
     
     SELECT bookName, bookPrice
     FROM book
-    WHERE bookPrice > ( SELECT AVG(bookPrice) AS "∆Ú±’ µµº≠ ∞°∞›"
+    WHERE bookPrice > ( SELECT AVG(bookPrice) AS "ÌèâÍ∑† ÎèÑÏÑú Í∞ÄÍ≤©"
                                         FROM book);
                                         
                                         
-    -- ¡§∫∏√‚∆«ªÁø°º≠ √‚∞£«— µµº≠∏¶ ±∏∏≈«— ¿˚¿Ã ¿÷¥¬ ∞Ì∞¥∏Ì √‚∑¬
-    -- ∞Ì∞¥∏Ì √‚∑¬
-                                        --µµº≠∏¶ ±∏∏≈«— ¿˚ ¿÷¥¬
-                                                                            -- √‚∆«ªÁ¿« µµº≠
-                                                                                                        -- ¡§∫∏√‚∆«ªÁ
+    -- Ï†ïÎ≥¥Ï∂úÌåêÏÇ¨ÏóêÏÑú Ï∂úÍ∞ÑÌïú ÎèÑÏÑúÎ•º Íµ¨Îß§Ìïú Ï†ÅÏù¥ ÏûàÎäî Í≥†Í∞ùÎ™Ö Ï∂úÎ†•
+    -- Í≥†Í∞ùÎ™Ö Ï∂úÎ†•
+                                        --ÎèÑÏÑúÎ•º Íµ¨Îß§Ìïú Ï†Å ÏûàÎäî
+                                                                            -- Ï∂úÌåêÏÇ¨Ïùò ÎèÑÏÑú
+                                                                                                        -- Ï†ïÎ≥¥Ï∂úÌåêÏÇ¨
     SELECT clientName
     FROM client
     WHERE clientNo IN (SELECT clientNo
@@ -50,12 +50,12 @@
                                                                             FROM book
                                                                             WHERE pubNo IN (SELECT pubNo
                                                                                                             FROM publisher
-                                                                                                            WHERE pubName = '¡§∫∏√‚∆«ªÁ')));
+                                                                                                            WHERE pubName = 'Ï†ïÎ≥¥Ï∂úÌåêÏÇ¨')));
                                                                                                             
 
 
 
-    -- «—π¯µµ ¡÷πÆ«— ¿˚¿Ã æ¯¥¬ ∞Ì∞¥¿« ∞Ì∞¥π¯»£, ∞Ì∞¥∏Ì √‚∑¬
+    -- ÌïúÎ≤àÎèÑ Ï£ºÎ¨∏Ìïú Ï†ÅÏù¥ ÏóÜÎäî Í≥†Í∞ùÏùò Í≥†Í∞ùÎ≤àÌò∏, Í≥†Í∞ùÎ™Ö Ï∂úÎ†•
     SELECT clientNo, clientName
     FROM client
     WHERE clientNo NOT IN (SELECT clientNo
@@ -75,29 +75,29 @@
                                 FROM bookSale
                                 WHERE client.clientNo = bookSale.clientNo);
                                 
-    -- NULL¿Œ ∞ÊøÏ, IN∞˙ EXISTS ¬˜¿Ã
+    -- NULLÏù∏ Í≤ΩÏö∞, INÍ≥º EXISTS Ï∞®Ïù¥
     SELECT clientHobby FROM client;
     
-    -- EXISTS : º≠∫Í ƒı∏Æ ∞·∞˙ø° NULL∞™ ∆˜«‘
-    -- NULL∞™ ∆˜«‘«œø© ∏µÁ clientNo √‚∑¬
+    -- EXISTS : ÏÑúÎ∏å ÏøºÎ¶¨ Í≤∞Í≥ºÏóê NULLÍ∞í Ìè¨Ìï®
+    -- NULLÍ∞í Ìè¨Ìï®ÌïòÏó¨ Î™®Îì† clientNo Ï∂úÎ†•
     SELECT clientNo
     FROM client
     WHERE EXISTS (SELECT clientHobby
                                 FROM client);
                                 
-   -- IN : º≠∫Í ƒı∏Æ ∞·∞˙ø° NULL∞™ ∆˜«‘µ«¡ˆ X
-   -- NULL∞™¿ª ∞Æ¡ˆ æ ¥¬ clientNo∏∏ √‚∑¬
+   -- IN : ÏÑúÎ∏å ÏøºÎ¶¨ Í≤∞Í≥ºÏóê NULLÍ∞í Ìè¨Ìï®ÎêòÏßÄ X
+   -- NULLÍ∞íÏùÑ Í∞ñÏßÄ ÏïäÎäî clientNoÎßå Ï∂úÎ†•
     SELECT clientNo
     FROM client
     WHERE clientHobby IN (SELECT clientHobby
                                 FROM client);
                                 
     
-    -- ALL : ∞Àªˆ ¡∂∞«¿Ã º≠∫Í ƒı∏Æ¿« ∞·∞˙¿« ∏µÁ ∞™ø° ∏∏¡∑«œ∏È ¬¸¿Ã µ«¥¬ ø¨ªÍ¿⁄
-    -- ¡∂∞« > ALL (º≠∫Í ƒı∏Æ ∞·∞˙)
-    -- 2π¯ ∞Ì∞¥¿Ã ¡÷πÆ«— µµº≠¿« √÷∞Ì ¡÷πÆºˆ∑Æ∫∏¥Ÿ ¥ı ∏π¿∫ µµº≠∏¶ ±∏¿‘«— ∞Ì∞¥
-    -- 2π¯ ∞Ì∞¥¿Ã ¡÷πÆ«— ∏µÁ ¡÷πÆø°º≠ πﬂª˝«— ¡÷πÆºˆ∑Æ∫∏¥Ÿ ¥ı ∏π¿∫ µµº≠∏¶ ±∏¿‘«— ∞Ì∞¥
-    -- ALL ªÁøÎ
+    -- ALL : Í≤ÄÏÉâ Ï°∞Í±¥Ïù¥ ÏÑúÎ∏å ÏøºÎ¶¨Ïùò Í≤∞Í≥ºÏùò Î™®Îì† Í∞íÏóê ÎßåÏ°±ÌïòÎ©¥ Ï∞∏Ïù¥ ÎêòÎäî Ïó∞ÏÇ∞Ïûê
+    -- Ï°∞Í±¥ > ALL (ÏÑúÎ∏å ÏøºÎ¶¨ Í≤∞Í≥º)
+    -- 2Î≤à Í≥†Í∞ùÏù¥ Ï£ºÎ¨∏Ìïú ÎèÑÏÑúÏùò ÏµúÍ≥† Ï£ºÎ¨∏ÏàòÎüâÎ≥¥Îã§ Îçî ÎßéÏùÄ ÎèÑÏÑúÎ•º Íµ¨ÏûÖÌïú Í≥†Í∞ù
+    -- 2Î≤à Í≥†Í∞ùÏù¥ Ï£ºÎ¨∏Ìïú Î™®Îì† Ï£ºÎ¨∏ÏóêÏÑú Î∞úÏÉùÌïú Ï£ºÎ¨∏ÏàòÎüâÎ≥¥Îã§ Îçî ÎßéÏùÄ ÎèÑÏÑúÎ•º Íµ¨ÏûÖÌïú Í≥†Í∞ù
+    -- ALL ÏÇ¨Ïö©
     SELECT clientNo, bsNo, bsQty
     FROM bookSale
     WHERE bsQty > ALL (SELECT bsQty
@@ -106,7 +106,7 @@
                                          
     SELECT * FROM bookSale;
     
-    -- ANY ªÁøÎ
+    -- ANY ÏÇ¨Ïö©
     SELECT clientNo, bsNo, bsQty
     FROM bookSale
     WHERE bsQty > ANY (SELECT bsQty
@@ -116,29 +116,29 @@
       
                                         
     /*
-        º≠∫Í ƒı∏Æ ¿Ø«¸
-            - Ω∫ƒÆ∂Û º≠∫Í ƒı∏Æ : SELECT ¿˝ ¿ßƒ° / ¥‹¿œ ø≠ π›»Ø
-            - ¿Œ∂Û¿Œ ∫‰ : FROM ¿˝ ¿ßƒ° / ∞·∞˙∏¶ ∫‰(∞°ªÛ ≈◊¿Ã∫Ì) «¸≈¬∑Œ π›»Ø
-            - ¡ﬂ√∏ º≠∫Í ƒı∏Æ : WHERE ¿˝ ¿ßƒ° / ∞·∞˙∏¶ «—¡§Ω√≈∞±‚ ¿ß«ÿ ªÁøÎ (¡§∫∏√‚∆«ªÁø° √‚∞£«— µµº≠)
+        ÏÑúÎ∏å ÏøºÎ¶¨ Ïú†Ìòï
+            - Ïä§ÏπºÎùº ÏÑúÎ∏å ÏøºÎ¶¨ : SELECT Ï†à ÏúÑÏπò / Îã®Ïùº Ïó¥ Î∞òÌôò
+            - Ïù∏ÎùºÏù∏ Î∑∞ : FROM Ï†à ÏúÑÏπò / Í≤∞Í≥ºÎ•º Î∑∞(Í∞ÄÏÉÅ ÌÖåÏù¥Î∏î) ÌòïÌÉúÎ°ú Î∞òÌôò
+            - Ï§ëÏ≤© ÏÑúÎ∏å ÏøºÎ¶¨ : WHERE Ï†à ÏúÑÏπò / Í≤∞Í≥ºÎ•º ÌïúÏ†ïÏãúÌÇ§Í∏∞ ÏúÑÌï¥ ÏÇ¨Ïö© (Ï†ïÎ≥¥Ï∂úÌåêÏÇ¨Ïóê Ï∂úÍ∞ÑÌïú ÎèÑÏÑú)
     */
     
     
-    -- Ω∫ƒÆ∂Û º≠∫Í ƒı∏Æ : SELECT ¿˝ø°º≠ ªÁøÎ
-    -- ∞·∞˙ ∞™¿ª ¥‹¿œ ø≠¿« Ω∫ƒÆ∂Û ∞™¿∏∑Œ π›»Ø
-    -- ∞Ì∞¥ ∫∞∑Œ √— ¡÷πÆ ºˆ∑Æ √‚∑¬
+    -- Ïä§ÏπºÎùº ÏÑúÎ∏å ÏøºÎ¶¨ : SELECT Ï†àÏóêÏÑú ÏÇ¨Ïö©
+    -- Í≤∞Í≥º Í∞íÏùÑ Îã®Ïùº Ïó¥Ïùò Ïä§ÏπºÎùº Í∞íÏúºÎ°ú Î∞òÌôò
+    -- Í≥†Í∞ù Î≥ÑÎ°ú Ï¥ù Ï£ºÎ¨∏ ÏàòÎüâ Ï∂úÎ†•
     SELECT clientNo, (SELECT clientName
                                     FROM client
-                                    WHERE client.clientNo = bookSale.clientNo) AS "∞Ì∞¥∏Ì", SUM(bsQty)
+                                    WHERE client.clientNo = bookSale.clientNo) AS "Í≥†Í∞ùÎ™Ö", SUM(bsQty)
     FROM bookSale
     GROUP BY clientNo;
     
     
-    -- ¿Œ∂Û¿Œ ∫‰ : FROM ¿˝ø°º≠ ªÁøÎ
-    -- ∞·∞˙∏¶ ∫‰(∞°ªÛ ≈◊¿Ã∫Ì) «¸≈¬∑Œ π›»Ø
-    SELECT bookName, bookPrice, SUM(bsQty) AS "√— ∆«∏≈ ºˆ∑Æ", SUM(bookPrice * bsQty) AS "√— ∆«∏≈æ◊"
+    -- Ïù∏ÎùºÏù∏ Î∑∞ : FROM Ï†àÏóêÏÑú ÏÇ¨Ïö©
+    -- Í≤∞Í≥ºÎ•º Î∑∞(Í∞ÄÏÉÅ ÌÖåÏù¥Î∏î) ÌòïÌÉúÎ°ú Î∞òÌôò
+    SELECT bookName, bookPrice, SUM(bsQty) AS "Ï¥ù ÌåêÎß§ ÏàòÎüâ", SUM(bookPrice * bsQty) AS "Ï¥ù ÌåêÎß§Ïï°"
     FROM (SELECT bookNo, bookName, bookPrice
                 FROM book
                 WHERE bookPrice >= 25000) book, bookSale
     WHERE book.bookNo = bookSale.bookNo
     GROUP BY book.bookNo, bookName, bookPrice
-    ORDER BY "√— ∆«∏≈æ◊" DESC;
+    ORDER BY "Ï¥ù ÌåêÎß§Ïï°" DESC;
