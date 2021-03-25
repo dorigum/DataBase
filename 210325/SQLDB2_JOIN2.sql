@@ -1,5 +1,5 @@
 
-        -- ¿ÞÂÊ (LEFT) ±âÁØ
+        -- ì™¼ìª½ (LEFT) ê¸°ì¤€
         SELECT *
         FROM client C
             LEFT OUTER JOIN bookSale BS
@@ -7,7 +7,7 @@
             ORDER BY C.clientNo;
      
             
-        -- ¿À¸¥ÂÊ (RIGHT) ±âÁØ
+        -- ì˜¤ë¥¸ìª½ (RIGHT) ê¸°ì¤€
         SELECT *
         FROM client C
             RIGHT OUTER JOIN bookSale BS
@@ -23,8 +23,8 @@
             ORDER BY C.clientNo;
             
             
-        -- ¿À¶óÅ¬ OUTER Á¶ÀÎ
-        -- (+) ¿¬»êÀÚ·Î Á¶ÀÎ ½Ã¿¡, °ªÀÌ ¾ø´Â Á¶ÀÎ Ãø¿¡ À§Ä¡
+        -- ì˜¤ë¼í´ OUTER ì¡°ì¸
+        -- (+) ì—°ì‚°ìžë¡œ ì¡°ì¸ ì‹œì—, ê°’ì´ ì—†ëŠ” ì¡°ì¸ ì¸¡ì— ìœ„ì¹˜
         SELECT *
         FROM client C, bookSale BS
         WHERE C.clientNo = BS.clientNo(+)
