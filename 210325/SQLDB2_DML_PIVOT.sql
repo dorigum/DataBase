@@ -1,7 +1,7 @@
         /*
-            PIVOT() ÇÔ¼ö
-                - ROW ´ÜÀ§¸¦ COLUMN ´ÜÀ§·Î º¯°æ
-                - ÇÑ ¿­¿¡ Æ÷ÇÔµÈ ¿©·¯ °ªÀ» ¿©·¯ ¿­·Î º¯È¯ÇÏ¿© Å×ÀÌºí ¹ÝÈ¯½ÄÀ» È¸ÀüÇÏ°í Áý°è ¼öÇà
+            PIVOT() í•¨ìˆ˜
+                - ROW ë‹¨ìœ„ë¥¼ COLUMN ë‹¨ìœ„ë¡œ ë³€ê²½
+                - í•œ ì—´ì— í¬í•¨ëœ ì—¬ëŸ¬ ê°’ì„ ì—¬ëŸ¬ ì—´ë¡œ ë³€í™˜í•˜ì—¬ í…Œì´ë¸” ë°˜í™˜ì‹ì„ íšŒì „í•˜ê³  ì§‘ê³„ ìˆ˜í–‰
         */
         
         
@@ -12,15 +12,15 @@
             );
             
         
-        INSERT INTO pivotTest VALUES ('±è¹ü¼ö', '°Ü¿ï', 10);
-        INSERT INTO pivotTest VALUES ('À±Á¾½Å', '¿©¸§', 15);
-        INSERT INTO pivotTest VALUES ('±è¹ü¼ö', '°¡À»', 25);
-        INSERT INTO pivotTest VALUES ('±è¹ü¼ö', '°Ü¿ï', 4);
-        INSERT INTO pivotTest VALUES ('±è¹ü¼ö', 'º½', 37);
-        INSERT INTO pivotTest VALUES ('À±Á¾½Å', 'º½', 40);
-        INSERT INTO pivotTest VALUES ('±è¹ü¼ö', '°¡À»', 14);
-        INSERT INTO pivotTest VALUES ('±è¹ü¼ö', '°Ü¿ï', 22);
-        INSERT INTO pivotTest VALUES ('À±Á¾½Å', '¿©¸§', 64);
+        INSERT INTO pivotTest VALUES ('ê¹€ë²”ìˆ˜', 'ê²¨ìš¸', 10);
+        INSERT INTO pivotTest VALUES ('ìœ¤ì¢…ì‹ ', 'ì—¬ë¦„', 15);
+        INSERT INTO pivotTest VALUES ('ê¹€ë²”ìˆ˜', 'ê°€ì„', 25);
+        INSERT INTO pivotTest VALUES ('ê¹€ë²”ìˆ˜', 'ê²¨ìš¸', 4);
+        INSERT INTO pivotTest VALUES ('ê¹€ë²”ìˆ˜', 'ë´„', 37);
+        INSERT INTO pivotTest VALUES ('ìœ¤ì¢…ì‹ ', 'ë´„', 40);
+        INSERT INTO pivotTest VALUES ('ê¹€ë²”ìˆ˜', 'ê°€ì„', 14);
+        INSERT INTO pivotTest VALUES ('ê¹€ë²”ìˆ˜', 'ê²¨ìš¸', 22);
+        INSERT INTO pivotTest VALUES ('ìœ¤ì¢…ì‹ ', 'ì—¬ë¦„', 64);
         
         
         SELECT * FROM pivotTest;
@@ -29,14 +29,14 @@
         SELECT * FROM pivotTest
             PIVOT(SUM(AMOUNT)
                 FOR season
-                IN ('º½', '¿©¸§', '°¡À»', '°Ü¿ï'));
+                IN ('ë´„', 'ì—¬ë¦„', 'ê°€ì„', 'ê²¨ìš¸'));
                 
                 
     
     
-    -- DELETE / DROP / TRUNCTE ½ÇÇà ¼Óµµ È®ÀÎ
+    -- DELETE / DROP / TRUNCATE ì‹¤í–‰ ì†ë„ í™•ì¸
     
-    -- 50¸¸ °ÇÀÇ µ¥ÀÌÅÍ »ý¼º
+    -- 50ë§Œ ê±´ì˜ ë°ì´í„° ìƒì„±
         CREATE TABLE bigTBL1 AS
         SELECT level AS bigID,
             ROUND(DBMS_RANDOM.VALUE(1, 500000), 0) AS numData
@@ -61,35 +61,35 @@
         
         
         
-        DELETE FROM bigTBL1; -- 68.644
+        DELETE FROM bigTBL1; -- ê°€ìž¥ ëŠë¦¼
         COMMIT;
         
-        DROP TABLE bigTBL2; -- 0.129
+        DROP TABLE bigTBL2; -- ë¹ ë¦„
         
-        TRUNCATE TABLE bigTBL3; -- 0.132
+        TRUNCATE TABLE bigTBL3; -- ë¹ ë¦„
         
         
         
-        -- CONNECT BY ±¸¹® : Å×½ºÆ®¿ë »ùÇÃ µ¥ÀÌÅÍ »ý¼ºÇØ¼­ »ç¿ëÇÒ ¶§
+        -- CONNECT BY êµ¬ë¬¸ : í…ŒìŠ¤íŠ¸ìš© ìƒ˜í”Œ ë°ì´í„° ìƒì„±í•´ì„œ ì‚¬ìš©í•  ë•Œ
             SELECT level
             FROM dual
             CONNECT BY level <= 20;
             
             
-        -- LPAD() : ¿ÞÂÊ¿¡¼­ºÎÅÍ ÃÑ ±æÀÌ¸¸Å­ ÁöÁ¤ÇÑ ¹®ÀÚ¿­·Î Ã¤¿ò
-        -- LPAD(°ª, ¹®ÀÚ¿­±æÀÌ, Ã¤¿ò¹®ÀÚ)
-            SELECT '2021³â' || LPAD(level, 2, 0) || '¿ù' AS no
+        -- LPAD() : ì™¼ìª½ì—ì„œë¶€í„° ì´ ê¸¸ì´ë§Œí¼ ì§€ì •í•œ ë¬¸ìžì—´ë¡œ ì±„ì›€
+        -- LPAD(ê°’, ë¬¸ìžì—´ê¸¸ì´, ì±„ì›€ë¬¸ìž)
+            SELECT '2021ë…„' || LPAD(level, 2, 0) || 'ì›”' AS no
             FROM dual
             CONNECT BY level <= 12;
             
             
        /*
-            Å×ÀÌºí º¹»ç : ±âº»Å°´Â º¹»ç°¡ ¾È µÊ!! (º¹»ç ÈÄ ±âº»Å° ¼³Á¤ÇØ¾ß ÇÔ)
+            í…Œì´ë¸” ë³µì‚¬ : ê¸°ë³¸í‚¤ëŠ” ë³µì‚¬ê°€ ì•ˆ ë¨!! (ë³µì‚¬ í›„ ê¸°ë³¸í‚¤ ì„¤ì •í•´ì•¼ í•¨)
                 - CREATE TABLE ... AS SELECT
-                - CREATE TABLE »õ Å×ÀÌºí¸í AS SELECT º¹»çÇÒ ¿­ FROM ¿øº» Å×ÀÌºí [WHEREÀý]
+                - CREATE TABLE ìƒˆ í…Œì´ë¸”ëª… AS SELECT ë³µì‚¬í•  ì—´ FROM ì›ë³¸ í…Œì´ë¸” [WHEREì ˆ]
         */
         
-        -- book Å×ÀÌºí¿¡¼­ '2019-01-01' ÀÌÈÄÀÎ µ¥ÀÌÅÍ¸¸ Ãâ·ÂÇÏ¿© newBook Å×ÀÌºí »ý¼º
+        -- book í…Œì´ë¸”ì—ì„œ '2019-01-01' ì´í›„ì¸ ë°ì´í„°ë§Œ ì¶œë ¥í•˜ì—¬ newBook í…Œì´ë¸” ìƒì„±
         CREATE TABLE newBook AS
         SELECT * FROM book  WHERE bookDate >= '2019-01-01';
         
@@ -100,21 +100,21 @@
             PRIMARY KEY (bookNo);
                 
         
-        -- newBook µ¥ÀÌÅÍ ¸ðµÎ »èÁ¦
+        -- newBook ë°ì´í„° ëª¨ë‘ ì‚­ì œ
         DELETE FROM newbook;
         
         
-        -- Á¸ÀçÇÏ´Â Å×ÀÌºí¿¡ µ¥ÀÌÅÍ¸¸ º¹»ç (Å×ÀÌºí ±¸Á¶ µ¿ÀÏÇÒ °æ¿ì)
+        -- ì¡´ìž¬í•˜ëŠ” í…Œì´ë¸”ì— ë°ì´í„°ë§Œ ë³µì‚¬ (í…Œì´ë¸” êµ¬ì¡° ë™ì¼í•  ê²½ìš°)
         INSERT INTO newbook SELECT * FROM book;
         
         
-        -- ±¸Á¶°¡ ´Ù¸¥ Å×ÀÌºí ÇÏ³ª »ý¼º
+        -- êµ¬ì¡°ê°€ ë‹¤ë¥¸ í…Œì´ë¸” í•˜ë‚˜ ìƒì„±
         CREATE TABLE newBook2 (
             bookNo VARCHAR2(10) NOT NULL PRIMARY KEY,
             bookName VARCHAR2(40)
             );
             
             
-      -- Á¸ÀçÇÏ´Â Å×ÀÌºí¿¡ µ¥ÀÌÅÍ¸¸ º¹»ç (Å×ÀÌºí ±¸Á¶ ´Ù¸¦ °æ¿ì)
+      -- ì¡´ìž¬í•˜ëŠ” í…Œì´ë¸”ì— ë°ì´í„°ë§Œ ë³µì‚¬ (í…Œì´ë¸” êµ¬ì¡° ë‹¤ë¥¼ ê²½ìš°)
         INSERT INTO newBook2(bookNo, bookName)
         SELECT bookNo, bookName FROM book;
