@@ -6,38 +6,38 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// µ¥ÀÌÅÍº£ÀÌ½º ¿¬°á Àü¿ë Å¬·¡½º
+// ë°ì´í„°ë² ì´ìŠ¤ ì—°ê²° ì „ìš© í´ë˜ìŠ¤
 
 public class DBConnect {
-	// ½Ì±ÛÅæ ÆĞÅÏ ÀÌ¿ë : °´Ã¼ ÇÑ°³¸¸ »ı¼º
+	// ì‹±ê¸€í†¤ íŒ¨í„´ ì´ìš© : ê°ì²´ í•œê°œë§Œ ìƒì„±
 	private static Connection con;
 
-	// Connection °´Ã¼ »ı¼ºÇØ¼­ ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+	// Connection ê°ì²´ ìƒì„±í•´ì„œ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
 	public static Connection getConnection() {
-		// ¿¬°á Á¤º¸ ¹®ÀÚ¿­ »ı¼º
-		// ¿¬°á ÁÖ¼Ò, »ç¿ëÀÚ °èÁ¤, ÆĞ½º¿öµå ¹®ÀÚ¿­·Î ¼³Á¤
+		// ì—°ê²° ì •ë³´ ë¬¸ìì—´ ìƒì„±
+		// ì—°ê²° ì£¼ì†Œ, ì‚¬ìš©ì ê³„ì •, íŒ¨ìŠ¤ì›Œë“œ ë¬¸ìì—´ë¡œ ì„¤ì •
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "KDYUSER2";
 		String pwd = "1234";
 
-		// Connection °´Ã¼ »ı¼º
+		// Connection ê°ì²´ ìƒì„±
 		// Class.forName("oracle.jdbc.driver.OracleDriver");
-		// JDBC 4.0 ºÎÅÍ´Â ÀÚµ¿ ·Îµå
+		// JDBC 4.0 ë¶€í„°ëŠ” ìë™ ë¡œë“œ
 		
 		try {
 			con = DriverManager.getConnection(url, user, pwd);
 			
 		} catch (SQLException e) {
-			System.out.println("DB¿¬°á ½ÇÆĞ");
+			System.out.println("DBì—°ê²° ì‹¤íŒ¨");
 			e.printStackTrace();
 		}
 
 		return con;
 	}
 
-	// ÀÚ¿ø ¹İÈ¯ ¸Ş¼Òµå
-	// ¹İÈ¯µÇ´Â ÀÚ¿ø¿¡ µû¶ó ´Ù¸£°Ô ¸Ş¼Òµå ¿À¹ö·Îµù
-	// Connection, PreparedStatement, ResultSet ÀÚ¿ø 3°³ ¹İÈ¯ close() ¸Ş¼Òµå
+	// ìì› ë°˜í™˜ ë©”ì†Œë“œ
+	// ë°˜í™˜ë˜ëŠ” ìì›ì— ë”°ë¼ ë‹¤ë¥´ê²Œ ë©”ì†Œë“œ ì˜¤ë²„ë¡œë”©
+	// Connection, PreparedStatement, ResultSet ìì› 3ê°œ ë°˜í™˜ close() ë©”ì†Œë“œ
 	public static void close(Connection con, PreparedStatement pstmt, ResultSet rs) {
 			try {
 			if(rs != null) {
@@ -61,8 +61,8 @@ public class DBConnect {
 			}
 		}
 
-	// ¹İÈ¯µÇ´Â ÀÚ¿ø¿¡ µû¶ó ´Ù¸£°Ô ¸Ş¼Òµå ¿À¹ö·Îµù
-	// Connection, PreparedStatement ÀÚ¿ø 2°³ ¹İÈ¯ close() ¸Ş¼Òµå
+	// ë°˜í™˜ë˜ëŠ” ìì›ì— ë”°ë¼ ë‹¤ë¥´ê²Œ ë©”ì†Œë“œ ì˜¤ë²„ë¡œë”©
+	// Connection, PreparedStatement ìì› 2ê°œ ë°˜í™˜ close() ë©”ì†Œë“œ
 	public static void close(Connection con, PreparedStatement pstmt) {
 			try {
 				if (pstmt != null) {
