@@ -62,7 +62,7 @@ public class DBConnect {
 		}
 
 	// 반환되는 자원에 따라 다르게 메소드 오버로딩
-	// Connection, PreparedStatement, ResultSet 자원 2개 반환 close() 메소드
+	// Connection, PreparedStatement 자원 2개 반환 close() 메소드
 	public static void close(Connection con, PreparedStatement pstmt) {
 			try {
 				if (pstmt != null) {
