@@ -52,13 +52,13 @@ public class BookSelectEx {
 			// 정수 : getInt()
 			// 날짜 : getDate()
 			while (rs.next()) { // 다음 행이 존재한다면
-				String bookNo = rs.getNString(1);
-				String bookName = rs.getNString(2);
-				String bookAuthor = rs.getNString(3);
+				String bookNo = rs.getString(1);
+				String bookName = rs.getString(2);
+				String bookAuthor = rs.getString(3);
 				int bookPrice = rs.getInt(4);
 				Date bookDate = rs.getDate(5);
 				int bookStock = rs.getInt(6);
-				String pubNo = rs.getNString(7);
+				String pubNo = rs.getString(7);
 
 				// 한 행씩 출력
 				System.out.format("%-10s\t %-25s\t %-10s %6d %13s \t%3d %10s",
